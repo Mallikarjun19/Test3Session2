@@ -1,47 +1,47 @@
-#include <stdio.h>
-int input()
+#include<stdio.h>
+int input_size()
 {
   int n;
-  printf("Enter the number\n");
+  printf("enter the size of the array: ");
   scanf("%d",&n);
   return n;
 }
-
-void init_array(int n, int a[n])
+void input_array(int n,int a[n])
 {
-  for(int i=0;i<n;i++)
-    a[i] = i;
-  a[1]=0;
+  int i;
+  printf("enter the array elements: \n");
+  for(i=0;i<n;i++)
+    {
+      scanf("%d",&a[i]);
+    }
 }
-
-void ets(int n, int a[n])
-{
-  int i=0;
-   /* Find next non-zero number */
-  while(i<sqrt(n)){
-   for(;a[i]==0 ;i++);
-   for(int k=i+i;k<n;k += i)
-     a[i] = 0;
-   i++;
-  }
+int find_largest(int n,int a[n])
+{ 
+ int i,big=0,largest;
+  for(i=0;i<n;i++)
+    {
+      if (a[i]>big)
+      {
+        big=a[i];
+        largest=i;
+        }
+      else
+      {
+        big=big;
+      }
+    }
+  return largest;
 }
-
-
-void display(int n, int a[n])
+void output(int n,int a[n],int largest)
 {
-  for(int i=0;i<n;i++)
-    if(a[i]!=0)
-      printf("%d ",a[i]);
-  printf("\n");
+  printf("the index of the largest number in an array is %d",largest);
 }
-
-int main()
+void main()
 {
-  int n;
-  n=input();
-  int a[n];
-  init_array(n,a);
-  ets(n,a);
-  display(n,a);
-  return 0;
+  int n,biggest;
+  n=input_size();
+   int a[n];
+  input_array(n,a);
+  biggest=find_largest(n,a);
+  output(n,a,biggest);
 }
